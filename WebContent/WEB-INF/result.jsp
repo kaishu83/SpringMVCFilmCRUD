@@ -13,7 +13,11 @@
 			<c:when test="${! empty films}">
 				<ul>
 					<c:forEach var="film" items="${films}">
+
+
+					
 						<li><a href="FilmById.do?filmId=${film.filmId }">${film.title}</a></li>
+
 					</c:forEach>
 				</ul>
 			</c:when>
