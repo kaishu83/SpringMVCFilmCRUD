@@ -25,9 +25,9 @@
 			<option value="${ film.langId}">6-German</option>
 
 		</select><br> Rent Duration:<input type="number" name="rentDur" size="5"
-			value="${film.rentDur}" /><br> Cost Rate: <input type="number"
-			name="length" size="5" value="${film.rate}" /><br> Length:<input
-			type="number" name="rentDur" size="5" value="${film.length}" /><br>
+			value="${film.rentDur}" /><br> 
+			Cost Rate: <input type="number" name="rate" size="50" value="${film.rate}" /><br>
+			 Length:<input type="number" name="length" size="5" value="${film.length}" /><br>
 		Replacement Cost: <input type="number" name="repCost" size="5"
 			value="${film.repCost}" /><br> 
 			
@@ -41,8 +41,10 @@
 		NC17 <input type="radio" name="rating" value="${film.rating}">
 		<br> 
 		
-		Features:<input type="text" name="desc" size="500" value="${film.features}"/><br>
-		<input type="submit" value="Create"  /><br>
+		Features:<input type="text" name="features" size="500" value="${film.features}"/><br>
+		
+		<input type="hidden" value="film" name="film"/>
+		<input type="submit" value="Update"  /><br>
 
 	</form>
 </body>

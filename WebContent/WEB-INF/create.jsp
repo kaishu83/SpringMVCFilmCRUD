@@ -33,8 +33,10 @@
 	PG13	<input type="radio" name="rating" value="PG13"><br>
 	R	<input type="radio" name="rating" value="R"> <br>
 	NC17	<input type="radio" name="rating" value="NC17"> <br>
-	Description:<input
-			type="text" name="desc" size="50" /><br>
+	Features:<input
+			type="text" name="features" size="50" /><br>
+			
+	<input type ="hidden" value="film" name="film"/>		
 	<input type="submit" value="Create" /><br>
 	
 	</form>
