@@ -275,7 +275,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	}
 
-	public boolean deleteFilm(Film film) {
+	public boolean deleteFilm(int filmId) {
 		Connection conn = null;
 
 		try {
@@ -285,7 +285,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			String sql = "DELETE FROM film WHERE id = ?";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, film.getFilmId());
+			stmt.setInt(1, filmId);
 			int count = stmt.executeUpdate();
 
 			conn.commit();

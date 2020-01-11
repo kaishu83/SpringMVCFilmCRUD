@@ -53,22 +53,27 @@
 						</c:choose></li>
 				</ul>
 				<c:if test="${film.filmId > 1000}">
-					<form action="delete.do" method="GET">
+					<form action="delete.do" method="POST">
+						<input type="hidden" name="filmId" value="${film.filmId}"/>
 						<input type="submit" value="Delete Film" />
 					</form>
 				</c:if>
 				<c:if test="${film.filmId > 1000}">
 					<form action="update.do" method="GET">
+						<input type="hidden" name="filmId" value="${film.filmId}"/>
 						<input type="submit" value="Update Film" />
 					</form>
 				</c:if>
 			</c:when>
-			<c:when test="${deleted == true}">
-			Film was Deleted Properly
+			<c:when test="${deleted}">
+			<c:if test="${deleted == true }">
+			Deleted Film Properly
+			</c:if>
+			<c:if test="${deleted == false }">
+			Film was not deleted properly
+			</c:if>
 			</c:when>
-			<c:when test="${deleted == false }">
-			Film was Not Deleted
-			</c:when>
+			
 			<c:otherwise>
 				<p>No film(s) found</p>
 			</c:otherwise>

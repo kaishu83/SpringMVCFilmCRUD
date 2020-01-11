@@ -46,11 +46,11 @@ public class FilmController {
 		mv.setViewName("WEB-INF/result.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "delete.do", method=RequestMethod.GET)
-	public ModelAndView delete(Film film) {
+	@RequestMapping(path = "delete.do", method=RequestMethod.POST)
+	public ModelAndView delete(int filmId) {
 		ModelAndView mv = new ModelAndView();
 		
-		boolean deleted = dao.deleteFilm(film);
+		boolean deleted = dao.deleteFilm(filmId);
 		mv.addObject("deleted", deleted);
 		mv.setViewName("WEB-INF/result.jsp");
 		return mv;
@@ -84,7 +84,7 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "updated.do")
+	@RequestMapping(path = "updated.do", method=RequestMethod.POST)
 	public ModelAndView updated(Film film) {
 		ModelAndView mv = new ModelAndView();
 
