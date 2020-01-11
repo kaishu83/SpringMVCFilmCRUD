@@ -8,8 +8,8 @@
 </head>
 <body>
 	<h1>We are so nice to let you add your film here!</h1>
-	<form action="creat.do" method="post">
-		ID:<input type="number" name="filmId" size="10" /> <br> Title:<input
+	<form action="created.do" method="post">
+	 Title:<input
 			type="text" name="title" size="25" /><br> Description:<input
 			type="text" name="desc" size="50" /><br> Release Year:<input
 			type="number" name="releaseYear" size="10" /><br> Language: <select

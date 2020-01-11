@@ -44,11 +44,15 @@
 						<c:if test="${film.filmId > 1000}">
 							<form action="delete.do" method="GET">
 								<input type="submit" value="Delete Film" />
+							<input type="hidden" name="filmId" value="${film.filmId }">
+								
 							</form>
 						</c:if>
 						<c:if test="${film.filmId > 1000}">
 							<form action="update.do" method="GET">
 								<input type="submit" value="Update Film" />
+							<input type="hidden" name="filmId" value="${film.filmId }">
+								
 							</form>
 						</c:if>
 						<br>

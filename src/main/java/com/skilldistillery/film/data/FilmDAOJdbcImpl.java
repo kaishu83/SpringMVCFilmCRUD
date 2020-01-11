@@ -224,7 +224,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 		return language;
 	}
 
-	public boolean createFilm(Film film) {
+	public Film createFilm(Film film) {
 		Connection conn = null;
 
 		try {
@@ -269,10 +269,9 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			return false;
 		}
 
-		return true;
+		return film;
 
 	}
 
@@ -307,8 +306,9 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	}
 
-	public boolean updateFilm(Film film) {
+	public Film updateFilm(Film film) {
 		Connection conn = null;
+		film=null;
 
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
@@ -342,10 +342,10 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 					System.err.println("Error trying to rollback.");
 				}
 			}
-			return false;
+			
 		}
 
-		return true;
+		return film;
 
 	}
 }
