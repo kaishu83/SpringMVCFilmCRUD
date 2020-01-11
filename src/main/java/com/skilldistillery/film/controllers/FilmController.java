@@ -16,5 +16,10 @@ public class FilmController {
 	public String home() {
 		return "WEB-INF/home.jsp";
 	}
+	
+	@RequestMapping("create.do")
+	public String create() {
+		return "WEB-INF/create.jsp";
+	}
 
 }

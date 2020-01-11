@@ -15,6 +15,12 @@
 <body>
 
 <h1>Films!!!</h1>
+<form action="home.do" method="get">
+
+</form>
+<form action="create.do" method="GET">
+<input type="submit" value="Create Film"/>
+</form>
 
 </body>
 
