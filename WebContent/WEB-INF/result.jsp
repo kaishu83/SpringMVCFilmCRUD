@@ -59,6 +59,12 @@
 					</form>
 				</c:if>
 			</c:when>
+			<c:when test="${deleted == true}">
+			Film was Deleted Properly
+			</c:when>
+			<c:when test="${deleted == false }">
+			Film was Not Deleted
+			</c:when>
 			<c:otherwise>
 				<p>No film(s) found</p>
 			</c:otherwise>
