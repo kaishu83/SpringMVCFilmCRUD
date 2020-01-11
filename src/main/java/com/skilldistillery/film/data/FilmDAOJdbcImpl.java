@@ -308,7 +308,6 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	public Film updateFilm(Film film) {
 		Connection conn = null;
-		film=null;
 
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
