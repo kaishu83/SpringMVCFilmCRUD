@@ -27,15 +27,18 @@
 		Cost Rate: <input type="number" name="rate" size="5" value="${film.rate}" /><br> 
 		Length:<input type="number" name="length" size="5" value="${film.length}" /><br>
 		Replacement Cost: <input type="number" name="repCost" size="5" value="${film.repCost}" /><br> 
-		Rating: <br> G<input type="radio" name="rating" value="${film.rating}"> <br>
-					PG <input type="radio" name="rating" value="${film.rating}"><br>
-					PG13 <input type="radio" name="rating" checked><br> 
-					R <input type="radio" name="rating" value="${film.rating}"> <br>
-					NC17 <input type="radio" name="rating" value="${film.rating}"><br> 
+		Rating: <br> G<input type="radio" name="rating" value="${film.rating}"/> <br>
+					PG <input type="radio" name="rating" value="${film.rating}"/><br>
+					PG13 <input type="radio" name="rating"/><br> 
+					R <input type="radio" name="rating" value="${film.rating}"/> <br>
+					NC17 <input type="radio" name="rating" value="${film.rating}"/><br> 
 		Features:<input type="text" name="features" size="500" value="${film.features}" /><br> 
 		
-		<input type="hidden" value="film" name="film"/>
-		<input type="submit" value="Update" /><br>
+
+		<input type="hidden" value="${film.filmId}" name="filmId"/>
+		<input type="hidden" value="${film }" name="film"/>
+		<input type="submit" value="Update Film" /><br>
+
 
 	</form>
 </body>
