@@ -306,12 +306,13 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	}
 
-	public Film updateFilm(Film film) {
+	public Film updateFilm(Film film, int filmId) {
 		Connection conn = null;
 
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
+			
 
 			String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=?, special_features=?"
 					+ " WHERE id=?";
@@ -327,7 +328,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			stmt.setDouble(8, film.getRepCost());
 			stmt.setString(9, film.getRating());
 			stmt.setString(10, film.getFeatures());
-			stmt.setInt(11, film.getFilmId());
+			stmt.setInt(11, filmId);
 			
 			int count = stmt.executeUpdate();
 			
