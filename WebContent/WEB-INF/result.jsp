@@ -15,13 +15,23 @@
 					<c:forEach var="film" items="${films}">
 
 
-					
+
 						<li><a href="FilmById.do?filmId=${film.filmId }">${film.title}</a></li>
+						<form action="update.do" method="GET">
+							<input type="hidden" name="filmId" value="${film.filmId}" /> <input
+								type="submit" value="Update Film" />
+						</form>
+						<c:if test="${film.filmId > 1000}">
+							<form action="delete.do" method="POST">
+								<input type="hidden" name="filmId" value="${film.filmId}" /> <input
+									type="submit" value="Delete Film" />
+							</form>
+						</c:if>
 
 					</c:forEach>
 				</ul>
 			</c:when>
-		
+
 			<c:when test="${! empty film}">
 				<ul>
 					<li>ID: ${film.filmId}</li>
@@ -46,38 +56,41 @@
 
 									</c:forEach>
 								</ul>
+								<form action="update.do" method="GET">
+									<input type="hidden" name="filmId" value="${film.filmId}" /> <input
+										type="submit" value="Update Film" />
+								</form>
 							</c:when>
 							<c:otherwise>
 								<p>No Actors Found</p>
 							</c:otherwise>
 						</c:choose></li>
 				</ul>
+				<form action="update.do" method="GET">
+					<input type="hidden" name="filmId" value="${film.filmId}" /> <input
+						type="submit" value="Update Film" />
+				</form>
 				<c:if test="${film.filmId > 1000}">
 					<form action="delete.do" method="POST">
-						<input type="hidden" name="filmId" value="${film.filmId}"/>
-						<input type="submit" value="Delete Film" />
-					</form>
-				</c:if>
-				<c:if test="${film.filmId > 1000}">
-					<form action="update.do" method="GET">
-						<input type="hidden" name="filmId" value="${film.filmId}"/>
-						<input type="submit" value="Update Film" />
+						<input type="hidden" name="filmId" value="${film.filmId}" /> <input
+							type="submit" value="Delete Film" />
 					</form>
 				</c:if>
 			</c:when>
 			<c:when test="${deleted}">
-			<c:if test="${deleted == true }">
+				<c:if test="${deleted == true }">
 			Deleted Film Properly
 			</c:if>
-			<c:if test="${deleted == false }">
+				<c:if test="${deleted == false }">
 			Film was not deleted properly
 			</c:if>
 			</c:when>
-			
+
 			<c:otherwise>
 				<p>No film(s) found</p>
 			</c:otherwise>
 		</c:choose>
 	</div>
+	<a href="home.do">Home</a>
 </body>
 </html>

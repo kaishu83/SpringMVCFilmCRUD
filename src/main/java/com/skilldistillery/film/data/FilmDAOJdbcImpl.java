@@ -1,5 +1,7 @@
 package com.skilldistillery.film.data;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -249,7 +251,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			int count = stmt.executeUpdate();
 			if (count == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
-				while (keys.next()) {
+				if (keys.next()) {
 					int newFilmId = keys.getInt(1);
 					film.setFilmId(newFilmId);
 				}
@@ -260,7 +262,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			conn.commit();
 
 		} catch (SQLException e) {
-
+			film = null;
 			e.printStackTrace();
 			if (conn != null) {
 				try {
@@ -334,6 +336,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			
 			conn.commit();
 		} catch (SQLException e) {
+			film = null;
 			e.printStackTrace();
 			if (conn != null) {
 				try {
