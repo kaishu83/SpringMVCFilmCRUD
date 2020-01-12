@@ -46,6 +46,7 @@
 					<li>Rating: ${film.rating}</li>
 					<li>Features: ${film.features}</li>
 					<li>Language: ${film.language}</li>
+					<li>Category: ${film.category}</li>
 					<li>List of Actors:<c:choose>
 							<c:when test="${! empty film.lActor}">
 								<ul>
@@ -56,15 +57,13 @@
 
 									</c:forEach>
 								</ul>
-								<form action="update.do" method="GET">
-									<input type="hidden" name="filmId" value="${film.filmId}" /> <input
-										type="submit" value="Update Film" />
-								</form>
+								
 							</c:when>
 							<c:otherwise>
 								<p>No Actors Found</p>
 							</c:otherwise>
 						</c:choose></li>
+					
 				</ul>
 				<form action="update.do" method="GET">
 					<input type="hidden" name="filmId" value="${film.filmId}" /> <input
