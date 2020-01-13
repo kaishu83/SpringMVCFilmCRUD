@@ -65,11 +65,15 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "created.do")
+	@RequestMapping(path = "created.do", method=RequestMethod.POST)
 	public ModelAndView created(Film film) {
 		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("film", dao.createFilm(film));
+		Film aFilm = dao.createFilm(film);
+		if (aFilm == null) {
+			mv.setViewName("WEB-INF/error.jsp");
+			return mv;
+		}
+		mv.addObject("film", aFilm);
 		mv.setViewName("WEB-INF/result.jsp");
 		return mv;
 	}
@@ -87,6 +91,11 @@ public class FilmController {
 	@RequestMapping(path = "updated.do", method=RequestMethod.POST)
 	public ModelAndView updated(Film film, int filmId) {
 		ModelAndView mv = new ModelAndView();
+		
+		if(dao.updateFilm(film, filmId) == null) {
+			mv.setViewName("WEB-INF/error.jsp");
+			return mv;
+		}
 
 		mv.addObject("film", dao.updateFilm(film, filmId));
 		mv.setViewName("WEB-INF/result.jsp");

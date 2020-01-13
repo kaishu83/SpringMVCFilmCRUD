@@ -20,6 +20,7 @@ public class Film {
 	private String features;
 	private List<Actor> lActor;
 	private String language;
+	private String category;
 
 	public Film() {
 		super();
@@ -146,6 +147,13 @@ public class Film {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
+	public String getCategory() {
+		return category;
+	}
+	
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	@Override
 	public String toString() {
@@ -228,4 +236,5 @@ public class Film {
 			return false;
 		return true;
 	}
+
 }

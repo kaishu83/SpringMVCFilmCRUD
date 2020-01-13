@@ -1,5 +1,7 @@
 package com.skilldistillery.film.data;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale.Category;
 
 import org.springframework.stereotype.Component;
 
@@ -52,8 +55,9 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				film.setRepCost(filmResult.getDouble("replacement_cost"));
 				film.setRating(filmResult.getString("rating"));
 				film.setFeatures(filmResult.getString("special_features"));
-				film.setlActor(findActorsByFilmId(filmId));
-				film.setLanguage(findLanguageOfFilm(filmId));
+				film.setlActor(findActorsByFilmId(film.getFilmId()));
+				film.setLanguage(findLanguageOfFilm(film.getFilmId()));
+				film.setCategory(findCategoriesByFilmId(film.getFilmId()));
 				filmResult.close();
 				stmt.close();
 				conn.close();
@@ -146,6 +150,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				String features = rs.getString("special_features");
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
 						features);
+				film.setCategory(findCategoriesByFilmId(film.getFilmId()));
 				films.add(film);
 			}
 			rs.close();
@@ -186,6 +191,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 						features);
 				film.setlActor(findActorsByFilmId(film.getFilmId()));
 				film.setLanguage(findLanguageOfFilm(film.getFilmId()));
+				film.setCategory(findCategoriesByFilmId(film.getFilmId()));
 				films.add(film);
 			}
 			rs.close();
@@ -249,7 +255,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			int count = stmt.executeUpdate();
 			if (count == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
-				while (keys.next()) {
+				if (keys.next()) {
 					int newFilmId = keys.getInt(1);
 					film.setFilmId(newFilmId);
 				}
@@ -260,7 +266,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			conn.commit();
 
 		} catch (SQLException e) {
-
+			film = null;
 			e.printStackTrace();
 			if (conn != null) {
 				try {
@@ -334,6 +340,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			
 			conn.commit();
 		} catch (SQLException e) {
+			film = null;
 			e.printStackTrace();
 			if (conn != null) {
 				try {
@@ -349,6 +356,30 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 	}
 
-	
+	public String findCategoriesByFilmId(int filmId) {
+		Connection conn = null;
+		String category = null;
+
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+
+			String sql = "Select category.name from category "
+					+ "JOIN film_category ON category.id = film_category.category_id "
+					+ "JOIN film ON film_category.film_id = film.id "
+					+ "WHERE film.id = ?";
+
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			
+			ResultSet rslt = stmt.executeQuery();
+			if (rslt.next()) {
+				category = rslt.getString(1);
+			}
+		} catch (SQLException e) {
+			category = null;
+			e.printStackTrace();
+		}
+		return category;
 	}
+}
 

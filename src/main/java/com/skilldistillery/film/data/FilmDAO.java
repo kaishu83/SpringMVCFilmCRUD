@@ -23,4 +23,6 @@ public interface FilmDAO {
 	public boolean deleteFilm(int filmId);
 
 	public Film updateFilm(Film film, int filmId);
+	
+	public String findCategoriesByFilmId(int filmId);
 }
